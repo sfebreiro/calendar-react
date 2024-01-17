@@ -4,6 +4,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { addHours } from 'date-fns';
 import { CalendarEvent, CalendarModal, NavBar } from '../';
 import { getMessagesES, localizer } from '../../helpers';
+import { useUiStore } from '../../hooks';
 
 const events = [{
   title: 'Lista de la compra',
@@ -19,6 +20,7 @@ const events = [{
 
 export const CalendarPage = () => {
 
+  const {openDateModal} = useUiStore();
   const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'agenda');
 
   const eventStyleGetter = (event, start, end, isSelected) => {
@@ -36,11 +38,11 @@ export const CalendarPage = () => {
   }
 
   const onDoubleClick = (event) => {
-    console.log({doubleClick: event})
+    openDateModal();
   }
 
   const onSelect = (event) => {
-    console.log({click: event})
+    //console.log({click: event})
   }
 
   const onViewChange = (event) => {
